@@ -1,6 +1,5 @@
-project(knx-iot-embedded)
 cmake_minimum_required(VERSION 3.18)
-
+project(knx_iot_embedded)
 
 include(FetchContent)
 
@@ -10,10 +9,13 @@ FetchContent_Declare(
     GIT_TAG master
 )
 
-set(CASCODA_BUILD_KNX CACHE BOOL ON "Build KNX dependencies")
+option(CASCODA_BUILD_KNX ON)
 
-message(STATUS "Downloading Cascoda SDK source code...")
-FetchContent_MakeAvailable(cascoda-sdk)
+if(NOT cascoda-sdk_POPULATED)
+    message(STATUS "Downloading Cascoda SDK source code...")
+    FetchContent_Populate(cascoda-sdk)
+    add_subdirectory(${cascoda-sdk_SOURCE_DIR} ${cascoda-sdk_BINARY_DIR})
+endif()
 
 # FetchContent_Declare(
 #     knx-iot-stack
