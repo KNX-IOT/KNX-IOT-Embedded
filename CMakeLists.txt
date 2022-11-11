@@ -39,7 +39,9 @@ add_executable(knx-iot-devboard-pb
 target_link_libraries(knx-iot-devboard-pb
     kisClientServer
     kis-port
+    # Openthread Minimal Thread Device
     ca821x-openthread-bm-mtd
+    # Library for interfacing with the devboard
     cascoda-bm-devboard
 )
 
@@ -49,3 +51,22 @@ target_compile_definitions(knx-iot-devboard-pb PRIVATE NO_MAIN)
 cascoda_configure_memory(knx-iot-devboard-pb 0x1500 0xc000)
 # Generate the .bin file to be flashed onto the Chili
 cascoda_make_binary(knx-iot-devboard-pb)
+
+# Compile the switching actuator example
+add_executable(knx-iot-devboard-sa
+    ${PROJECT_SOURCE_DIR}/knx_iot_virtual_sa.c
+    ${PROJECT_SOURCE_DIR}/knx_iot_chilidev_sa.c
+    ${PROJECT_SOURCE_DIR}/knx_iot_wakeful_main.c
+)
+
+target_link_libraries(knx-iot-devboard-sa
+    kisClientServer
+    kis-port
+    ca821x-openthread-bm-mtd
+    cascoda-bm-devboard
+)
+
+target_compile_definitions(knx-iot-devboard-sa PRIVATE NO_MAIN)
+
+cascoda_make_binary(knx-iot-devboard-sa)
+cascoda_configure_memory(knx-iot-devboard-sa 0x1500 0xc000)
