@@ -7,7 +7,7 @@ endif()
 
 include(FetchContent)
 
-# Download the Cascoda SDK and enable the KNX port
+# Download the Cascoda SDK and KNX-IOT stack.
 FetchContent_Declare(
     cascoda-sdk
     GIT_REPOSITORY https://github.com/Cascoda/cascoda-sdk.git
@@ -16,18 +16,8 @@ FetchContent_Declare(
 
 set(CASCODA_BUILD_KNX ON CACHE BOOL "Enable the KNX-IoT Port")
 
-message(STATUS "Downloading Cascoda SDK source code...")
+message(STATUS "Downloading KNX-IOT & Cascoda SDK source code...")
 FetchContent_MakeAvailable(cascoda-sdk)
-
-# Download the KNX-IoT source code
-FetchContent_Declare(
-    knx-iot-stack
-    GIT_REPOSITORY https://github.com/KNX-IOT/KNX-IOT-STACK.git
-    GIT_TAG master
-)
-
-message(STATUS "Downloading KNX-IOT source code...")
-FetchContent_MakeAvailable(knx-iot-stack)
 
 # Compile the Push Button Example
 
@@ -35,7 +25,7 @@ add_executable(knx-iot-devboard-pb
 	# KNX-IoT code, common across all platforms
     ${PROJECT_SOURCE_DIR}/knx_iot_virtual_pb.c
     # Embedded specific code populating the callbacks defined by the KNX-IoT applications
-    ${PROJECT_SOURCE_DIR}/knx_iot_chilidev_pb.c
+    ${PROJECT_SOURCE_DIR}/knx_iot_pb_dev.c
     # Embedded specific main loop, which initialises the MCU, communications & then runs the KNX application
     ${PROJECT_SOURCE_DIR}/knx_iot_wakeful_main.c
 )
@@ -59,7 +49,7 @@ cascoda_make_binary(knx-iot-devboard-pb)
 # Compile the switching actuator example
 add_executable(knx-iot-devboard-sa
     ${PROJECT_SOURCE_DIR}/knx_iot_virtual_sa.c
-    ${PROJECT_SOURCE_DIR}/knx_iot_chilidev_sa.c
+    ${PROJECT_SOURCE_DIR}/knx_iot_sa_dev.c
     ${PROJECT_SOURCE_DIR}/knx_iot_wakeful_main.c
 )
 
