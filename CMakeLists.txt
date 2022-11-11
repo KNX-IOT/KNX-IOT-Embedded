@@ -3,13 +3,13 @@ project(knx_iot_embedded)
 
 include(FetchContent)
 
+set(CASCODA_BUILD_KNX BOOL CACHE ON "")
+
 FetchContent_Declare(
     cascoda-sdk
     GIT_REPOSITORY https://github.com/Cascoda/cascoda-sdk.git
     GIT_TAG master
 )
-
-option(CASCODA_BUILD_KNX ON)
 
 if(NOT cascoda-sdk_POPULATED)
     message(STATUS "Downloading Cascoda SDK source code...")
@@ -47,4 +47,4 @@ target_include_directories(knx-iot-devboard-pb
 target_compile_definitions(knx-iot-devboard-pb PRIVATE NO_MAIN)
 
 cascoda_make_binary(knx-iot-devboard-pb)
-cascoda_configure_memory(knx-iot-devboard-pb 0x1500 0xc000)
+# cascoda_configure_memory(knx-iot-devboard-pb 0x1500 0xc000)
