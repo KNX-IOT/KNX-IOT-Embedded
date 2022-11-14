@@ -30,7 +30,7 @@ Set-ExecutionPolicy RemoteSigned
 .\install-toolchain.ps1
 ```
 
-Finally, set up the build directory & compile your binaries:
+Finally, set up the build directory & compile your binaries. This can be done outside of an ADMIN shell.
 ```powershell
 .\configure-build.ps1
 ```
