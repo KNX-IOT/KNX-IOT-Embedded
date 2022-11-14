@@ -18,19 +18,21 @@ To save time on subsequent incremental builds, you may simply run `make` inside 
 
 ### For Windows
 
-Install the tools needed to build using the Chocolatey package manager:
+Run the following within an ADMIN Powershell window in order to set up the Chocolatey package manager:
 
 ```powershell
-choco install git -y
-choco install cmake -y --installargs 'ADD_CMAKE_TO_PATH=System'
-choco install ninja -y
-choco install gcc-arm-embedded -y
+Set-ExecutionPolicy Bypass -Scope Process -Force; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
 ```
-Build the example application:
+
+Then, also in an ADMIN Powershell window, allow the execution of local scripts & install the toolchain using Choco.
 ```powershell
-mkdir build
-cd build/
-cmake .. -DCMAKE_TOOLCHAIN_FILE="../arm_gcc_m2351.cmake" -G "Ninja" ; cmake . ; ninja
+Set-ExecutionPolicy RemoteSigned
+.\install-toolchain.ps1
+```
+
+Finally, set up the build directory & compile your binaries:
+```powershell
+.\configure-build.ps1
 ```
 
 On subsequent builds, you only need to run `ninja` inside your build directory.
