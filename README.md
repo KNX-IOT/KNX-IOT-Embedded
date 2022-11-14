@@ -7,16 +7,35 @@ This repository shows an example of how you can put together a KNX-IOT applicati
 In order to build this repository, you need CMake version 3.18 or greater, as well as a recent ARM GCC compiler. See the [Development Environment Setup guide](https://github.com/Cascoda/cascoda-sdk/blob/master/docs/guides/development-setup.md) for detailed instructions on how to set this up. 
 
 ## Build Instructions
+### For Linux
 ```bash
 mkdir build
 cd build/
-# You may get an error concernining a missing "/include" path. 
-# Please ignore it, the following 'make' command will
-# succeed regardless
 cmake .. -DCMAKE_TOOLCHAIN_FILE=../arm_gcc_m2351.cmake || make
 ```
 
 To save time on subsequent incremental builds, you may simply run `make` inside your build directory.
+
+### For Windows
+
+Run the following within an ADMIN Powershell window in order to set up the Chocolatey package manager:
+
+```powershell
+Set-ExecutionPolicy Bypass -Scope Process -Force; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
+```
+
+Then, also in an ADMIN Powershell window, allow the execution of local scripts & install the toolchain using Choco.
+```powershell
+Set-ExecutionPolicy RemoteSigned
+.\install-toolchain.ps1
+```
+
+Finally, set up the build directory & compile your binaries. This can be done outside of an ADMIN shell.
+```powershell
+.\configure-build.ps1
+```
+
+On subsequent builds, you only need to run `ninja` inside your build directory.
 
 ## Example Binaries
 
