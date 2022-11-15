@@ -7,6 +7,8 @@ endif()
 
 include(FetchContent)
 
+set(CASCODA_BUILD_BINARIES "" OFF)
+
 # Download the Cascoda SDK and KNX-IOT stack.
 FetchContent_Declare(
     cascoda-sdk
