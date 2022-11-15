@@ -42,32 +42,11 @@ jobs:
       run: |
         make -C ${{ github.workspace}}/build -j4
 
-    # # ~CascodaPrivStart (This is for autoremoval of this section in the release script)
-    # - name: build Chili2D-USB-OCF-OTA
-    #   run: |
-    #     mkdir ${{ github.workspace }}/build-chili2-ota
-    #     cmake -S ${{ github.workspace }}/cascoda-sdk -B ${{ github.workspace }}/build-chili2-ota  -DCMAKE_TOOLCHAIN_FILE=toolchain/arm_gcc_m2351.cmake -DCASCODA_BUILD_OCF=ON -DCASCODA_BUILD_OCF_PKI=ON  -DCASCODA_BUILD_SECURE_LWM2M=OFF -DCASCODA_CHILI_FLASH_PAGES=16 -DCASCODA_OPENTHREAD_MESSAGE_BUFS=61 -DCASCODA_EXTERNAL_FLASHCHIP_PRESENT=ON -DCASCODA_OTA_UPGRADE_ENABLED=ON
-    #     make -C ${{ github.workspace }}/build-chili2-ota -j4 ocf-light ocf-reed-light
-    #     cp ${{ github.workspace }}/build-chili2-ota/bin/ocf-*.bin ${{ github.workspace }}/upload-usb
-    # # ~CascodaPrivEnd (This ends the autoremoval section)
-
-    # - name: Upload Chili2S-UART0-1Mbaud
-    #   uses: actions/upload-artifact@v1.0.0
-    #   with:
-    #     name: Chili2S-UART0-1Mbaud
-    #     path: ${{ github.workspace }}/upload-uart
-
     # - name: Upload Chili2D-USB
     #   uses: actions/upload-artifact@v1.0.0
     #   with:
     #     name: Chili2D-USB
     #     path: ${{ github.workspace }}/upload-usb
-
-    # - name: Upload Chili2-Lib
-    #   uses: actions/upload-artifact@v1.0.0
-    #   with:
-    #     name: Chili2-Lib
-    #     path: ${{ github.workspace }}/upload-lib
 
   # # If we're on master, make a release
   # makerelease:
