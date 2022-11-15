@@ -37,6 +37,7 @@ jobs:
       run: |
         arm-none-eabi-gcc --version
         cmake -S ${{ github.workspace }}/knx-iot-embedded -B ${{ github.workspace }}/build -DCMAKE_TOOLCHAIN_FILE=arm_gcc_m2351.cmake
+      continue-on-error: true
 
     # # ~CascodaPrivStart (This is for autoremoval of this section in the release script)
     # - name: build Chili2D-USB-OCF-OTA
