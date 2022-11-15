@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
       with:
         fetch-depth: 0
         path: knx-iot-embedded
@@ -56,7 +56,7 @@ jobs:
 
   #   # Checkout the code, and fetch all tags (for version)
   #   steps:
-  #   - uses: actions/checkout@v2
+  #   - uses: actions/checkout@v3
   #     with:
   #       fetch-depth: 0
   #       path: cascoda-sdk
