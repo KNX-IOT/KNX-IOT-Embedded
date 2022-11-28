@@ -1,6 +1,6 @@
 # KNX-IOT-Embedded
 
-This repository shows an example of how you can put together a KNX-IOT application which runs on an embedded platform. These examples run on [Cascoda's Thread Development Kit](https://www.cascoda.com/products/thread-development-kit/). These applications are identical to the examples in [KNX-IOT-Virtual](https://github.com/KNX-IOT/KNX-IOT-Virtual), except running on a Thread-based embedded device.
+This repository shows an example of how you can put together a KNX-IOT application which runs on an embedded platform. These examples run on [Cascoda's Thread Development Board](https://www.cascoda.com/products/thread-development-kit/). These applications are identical to the examples in [KNX-IOT-Virtual](https://github.com/KNX-IOT/KNX-IOT-Virtual), except running on a Thread-based embedded device.
  
 ## Prerequisites
 
